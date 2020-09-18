@@ -13,6 +13,7 @@
     <!--<p aria-live="polite" v-if="!Quest1 && q1Submitted" v-html="$t('pleaseAnswer')"></p>-->
     <p tabindex="0" aria-live="assertive" v-if="answer && q1Submitted" v-html="question.feedback[answer]" style="margin-bottom: 20px;" />
     <p tabindex="0" aria-live="assertive" v-if="answer && q1Submitted && question.conclusion" v-html="question.conclusion" style="margin-bottom: 20px;" />
+    <p v-if="answer && q1Submitted"><b-button @click="continueBtn">{{ $t('continue') }}</b-button></p>
   </span>
 </template>
 
@@ -51,6 +52,9 @@
         if(this.answer != ""){
           this.$emit('response', this.Quest1);
         }
+      },
+      continueBtn(){
+        this.$emit('continue');
       }
     },
   }
@@ -199,7 +203,7 @@
     },
     "fr":{
       "selectRight": "Choisissez la bonne réponse&nbsp;:",
-      "sibmit": "Soumettre"
+      "submit": "Soumettre"
     }
   }
   
