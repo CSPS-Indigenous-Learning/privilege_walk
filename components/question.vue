@@ -220,7 +220,7 @@
       "submit": "Submit"
     },
     "fr":{
-      "selectRight": "Choisissez la bonne réponse&nbsp;:",
+      "selectRight": "Choisissez la bonne réponse.",
       "submit": "Soumettre"
     }
   }
