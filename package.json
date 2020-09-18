@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "nuxt",
     "start": "nuxt start",
-    "build": "node scripts/generateDb && nuxt build",
-    "generate": "node scripts/generateDb && nuxt generate"
+    //"build": "node scripts/generateDb && nuxt build",
+    "build": "nuxt build",
+    //"generate": "node scripts/generateDb && nuxt generate"
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
