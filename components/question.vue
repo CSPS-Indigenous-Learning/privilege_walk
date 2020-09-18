@@ -1,20 +1,20 @@
 <template>
-  <span class="pure-radiobutton">
+  <div class="pure-radiobutton">
     <fieldset tabindex="0" style="margin-bottom: 15px;">
       <legend><strong class="question" v-html="question.text" /></legend>
       <p v-html="$t('selectRight')" />
       <ol type="1">
         <li v-for="(item,index) in question.options" :key="index">
-          <input :disabled="lock" @click="q1Submitted=false" type="radio" v-model="answer" :name="'q'+qId" :id="'radioq'+qId+index" :value="index"><label :for="'radioq'+qId+index" v-html="item" />
+          <input :disabled="isLocked" @click="submitted=false" type="radio" v-model="answer" :name="'q'+qId" :id="'radioq'+qId+index" :value="index"><label :for="'radioq'+qId+index" v-html="item" />
           </li>
       </ol>
-      <b-button :disabled="q1Submitted || lock || !answer" @click="submitAnswer">{{ $t('submit') }}</b-button>
+      <b-button :disabled="submitted || isLocked || !answer" @click="submitAnswer">{{ $t('submit') }}</b-button>
     </fieldset>
-    <!--<p aria-live="polite" v-if="!Quest1 && q1Submitted" v-html="$t('pleaseAnswer')"></p>-->
-    <p tabindex="0" aria-live="assertive" v-if="answer && q1Submitted" v-html="question.feedback[answer]" style="margin-bottom: 20px;" />
-    <p tabindex="0" aria-live="assertive" v-if="answer && q1Submitted && question.conclusion" v-html="question.conclusion" style="margin-bottom: 20px;" />
-    <p v-if="answer && q1Submitted"><b-button @click="continueBtn">{{ $t('continue') }}</b-button></p>
-  </span>
+    <!--<p aria-live="polite" v-if="!Quest1 && submitted" v-html="$t('pleaseAnswer')"></p>-->
+    <p tabindex="0" aria-live="assertive" v-if="answer && submitted" v-html="question.feedback[answer]" style="margin-bottom: 20px;" />
+    <p tabindex="0" aria-live="assertive" v-if="answer && submitted && question.conclusion" v-html="question.conclusion" style="margin-bottom: 20px;" />
+    <p v-if="answer && submitted && showContinue"><b-button @click="continueBtn">{{ $t('continue') }}</b-button></p>
+  </div>
 </template>
 
 <script type="text/javascript">
@@ -22,13 +22,13 @@
   export default {
     data() {
       return {
-        q1Submitted: false,
-        answer: ""
+        submitted: false,
+        answer: "",
+        innerLock: false
       }
     },
 
     props: {
-      forceEmpty:{ type:Boolean, default:false },
       lock:{ type:Boolean, default:false },
       question: {
         type: Object,
@@ -44,11 +44,29 @@
       qId: {
         type: String,
         default: "0"
+      },
+      showContinue: {
+        type: Boolean,
+        default: true
       }
     },
+
+    computed: {
+      isLocked(){
+        if(this.lock || this.innerLock){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+    },
+
     methods: {
       submitAnswer() {
-        this.q1Submitted = true
+        this.submitted = true;
+        this.innerLock = true;
+
         if(this.answer != ""){
           this.$emit('response', this.Quest1);
         }

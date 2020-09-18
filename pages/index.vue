@@ -2,10 +2,26 @@
   <b-row>
     <b-col>
       <h1>Title</h1>
-    
-      <question v-if="questionAt == 1" :question="$t('questions.q1')" qId="1" @response="questionAnswered" @continue="nextQuestion" />
-      <question v-if="questionAt == 2" :question="$t('questions.q2')" qId="2" @response="questionAnswered" @continue="nextQuestion" />
-      <question v-if="questionAt == 3" :question="$t('questions.q3')" qId="3" @response="questionAnswered" />
+
+      <transition name="fade" mode="out-in">
+        <div key="q1" v-if="questionAt == 1">
+          <question :question="$t('questions.q1')" qId="1" @response="questionAnswered" @continue="nextQuestion" />
+        </div>
+        <div key="q2" v-if="questionAt == 2">
+          <question :question="$t('questions.q2')" qId="2" @response="questionAnswered" @continue="nextQuestion" />
+        </div>
+        <div key="q3" v-if="questionAt == 3">
+          <question :question="$t('questions.q3')" qId="3" @response="questionAnswered" :showContinue="false" />
+        </div>
+      </transition>
+
+      <hr style="margin-top: 70px;" />
+      <b-row>
+        <b-col>
+          <p><b-button @click="reset">{{ $t('startOver') }}</b-button></p>
+        </b-col>
+      </b-row>
+
     </b-col>
   </b-row>
 </template>
@@ -41,6 +57,9 @@
       },
       nextQuestion(){
         this.questionAt++;
+      },
+      reset(){
+        this.questionAt = 1;
       }
     },
   }
@@ -57,7 +76,7 @@
 
   {
     "en": {
-      "something": "Something",
+      "startOver": "Start Over",
       "questions": {
         "q1": {
           "text": "Is this a question?",
@@ -107,7 +126,7 @@
       }
     },
     "fr": {
-      "something": "Quelque chose",
+      "startOver": "Recommencer",
       "questions": {
         "q1": {
           "text": "Est-ce une question?",
@@ -140,7 +159,7 @@
           }
         },
         "q3": {
-          "text": "Un dernière fois, ça?",
+          "text": "Un dernière fois. Ça?",
           "options": {
             "1": "Oui",
             "2": "Non",

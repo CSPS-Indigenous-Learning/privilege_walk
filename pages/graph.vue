@@ -2,20 +2,22 @@
   <div>
     <h1>{{ $t('title') }}</h1>
     <b-row v-if="!dataSubmitted">
-      <b-col cols="12" v-if="step == 1">
-        <p>
-          <label for="participantsNum">{{ $t('enterPartNum') }}</label>
-          <input type="number" min="1" id="participantsNum" name="participantsNum" v-model.number="participantsNum" >
-        </p>
-        <p><b-button @click="nextStep">{{ $t('continue') }}</b-button></p>
-      </b-col>
-      <b-col cols="12" v-if="step == 2">
-        <p v-for="n in participantsNum">
-          <label :for="'score_' + n">{{ $t('enterScore') }} {{ n }}</label>
-          <input type="number" min="1" value="10" :id="'score_' + n" :name="'score_' + n" @change="changeScore($event.target.value, n)">
-        </p>
-        <p><b-button @click="submit">{{ $t('continue') }}</b-button></p>
-      </b-col>
+      <transition name="fade" mode="out-in">
+        <b-col cols="12" v-if="step == 1" key="step1">
+          <p>
+            <label for="participantsNum">{{ $t('enterPartNum') }}</label>
+            <input type="number" min="1" id="participantsNum" name="participantsNum" v-model.number="participantsNum" >
+          </p>
+          <p><b-button @click="nextStep">{{ $t('continue') }}</b-button></p>
+        </b-col>
+        <b-col cols="12" v-if="step == 2" key="step2">
+          <p v-for="n in participantsNum">
+            <label :for="'score_' + n">{{ $t('enterScore') }} {{ n }}</label>
+            <input type="number" min="1" value="10" :id="'score_' + n" :name="'score_' + n" @change="changeScore($event.target.value, n)">
+          </p>
+          <p><b-button @click="submit">{{ $t('continue') }}</b-button></p>
+        </b-col>
+      </transition>
       <b-col cols="12" v-if="error != ''">
         <p>{{ error }}</p>
       </b-col>
@@ -58,11 +60,14 @@
     watch: {
       step(newVal){
         if(newVal == 2){
-          this.$nextTick(function(){
-            for(var i = 1; i <= this.participantsNum; i++){
-              this.changeScore(document.getElementById("score_" + i).value, i);
-            }
-          })
+          var that = this
+          setTimeout(function(){
+            that.$nextTick(function(){
+              for(var i = 1; i <= this.participantsNum; i++){
+                this.changeScore(document.getElementById("score_" + i).value, i);
+              }
+            })
+          }, 400);
         }
       }
     },
@@ -159,8 +164,6 @@
       "title": "Create a graph",
       "enterPartNum": "Please enter the number of participants in the session",
       "enterScore": "Please enter the score of participant",
-      "continue": "Continue",
-      "reset": "Reset",
       "noSupport": "Unfortunately, your browser does not support this element.",
       "graphLabel": "Graphic showing the score of every participant in the session"
     },
@@ -168,8 +171,6 @@
       "title": "Créer un graphique",
       "enterPartNum": "Veuillez entrer le nombre de participants dans la session",
       "enterScore": "Veuillez entrer le score du participant",
-      "continue": "Continuer",
-      "reset": "Réinitialiser",
       "noSupport": "Malheureusement, votre navigateur ne supporte pas cet élément.",
       "graphLabel": "Graphique montrant le score de chaque participant dans la session"
     }
