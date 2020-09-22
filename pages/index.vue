@@ -3,6 +3,12 @@
     <b-col>
       <h1>Title</h1>
 
+      <b-row>
+        <b-col>
+          <graph :graphData="graphData" :questionNum="15" ref="graph"></graph>
+        </b-col>
+      </b-row>
+
       <transition name="fade" mode="out-in">
         <div key="q1" v-if="questionAt == 1">
           <question :question="$t('questions.q1')" qId="1" @response="questionAnswered" @continue="nextQuestion" />
@@ -22,36 +28,69 @@
         </b-col>
       </b-row>
 
+      <b-row v-if="debug">
+        <b-col>
+          <p v-for="participant in graphData">QuestionAt: {{ participant.x }}, score: {{ participant.y }}</p>
+        </b-col>
+      </b-row>
+
     </b-col>
   </b-row>
 </template>
 
 <script type="text/javascript">
   
-  //import { getArticleSummaries } from "@/assets/js/flatFileDb";
+  import { getArticleSummaries } from "@/assets/js/flatFiledb";
   import question from "~/components/question";
+  import graph from "~/components/graph";
   
   export default{
     components: {
-      question
+      question,
+      graph
     },
     data(){
       return{
-        //articleSummaries: [],
-        questionAt: 1
+        questionAt: 1,
+
+        debug: false,
+        graphData: [],
       }
     },
     
-    //for DB
-    /*async asyncData () {
-      const articleSummaries = await getArticleSummaries();
-      return { articleSummaries }
+    mounted () {
+      this.refreshGraphData(false);
+
+      var that = this;
+      setInterval(function(){
+        that.refreshGraphData(true);
+      }, 3000)
     },
-    async created () {
-      this.articleSummaries = await getArticleSummaries();
-    },*/
     
     methods:{
+      async refreshGraphData(update){
+        const db = await getArticleSummaries();
+        var dbArr = Object.values(db);
+
+        this.graphData = [];
+        for(var i = 0; i < dbArr.length; i++){
+          var value = { x: dbArr[i].questionAt, y: dbArr[i].score };
+          this.graphData.push(value);
+        }
+
+        if(this.debug){
+          console.log(db);
+          console.log(dbArr);
+          console.log(this.graphData);
+        }
+
+        if(update){
+          this.$refs.graph.update();
+        }
+        else{
+          this.$refs.graph.render();
+        }
+      },
       questionAnswered(){
         console.log("Question answered");
       },
@@ -60,7 +99,7 @@
       },
       reset(){
         this.questionAt = 1;
-      }
+      },
     },
   }
   
