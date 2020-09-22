@@ -75,8 +75,6 @@
       },
       update(){
         this.chart.update();
-
-        console.log(this.graphData);
       }
     },
 

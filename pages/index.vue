@@ -108,11 +108,12 @@
       },
 
       async writeDB(content){
-        /*await this.$axios.post(this.$i18n.locale + '/api/write', {
-          content: '{ "participant1": { "questionAt": 3, "score": 7 }, "participant2": { "questionAt": 10, "score": -3 }, "participant3": { "questionAt": 13, "score": 0 } }'
+        /*await this.$axios.$post('en/api/write', {
+          //content: '{ "participant1": { "questionAt": 3, "score": 7 }, "participant2": { "questionAt": 10, "score": -3 }, "participant3": { "questionAt": 13, "score": 0 } }'
+          content: '{}'
         });*/
 
-        await this.$axios.$get(this.$i18n.locale + '/api/write');
+        await this.$axios.$get('en/api/write');
       }
     },
   }
