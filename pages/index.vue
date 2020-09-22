@@ -46,7 +46,7 @@
 
 <script type="text/javascript">
   
-  import { getArticleSummaries } from "@/assets/js/flatFiledb";
+  import { getArticleSummaries } from "@/assets/js/flatFileDb";
   import question from "~/components/question";
   import graph from "~/components/graph";
   
