@@ -1,15 +1,22 @@
-
 {
     "version": 2,
+    "env": {
+        "ON_VERCEL": "true"
+    },
     "builds": [
         {
+            "src": "api/**/*.js",
+            "use": "@now/node"
+        },
+        {
             "src": "nuxt.config.js",
-            "use": "@nuxtjs/now-builder",
-            "config": {
-                "serverFiles": [
-                    "package.json"
-                ]
-            }
+            "use": "@nuxtjs/now-builder"
         }
+    ],
+    "routes": [
+        { "src": "/en/api/(.*)", "dest": "api/index.js" },
+        { "src": "/en/api", "dest": "api/index.js" },
+        { "src": "/en/api/write", "dest": "api/write.js" },
+        { "src": "/(.*)", "dest": "$1" }
     ]
 }
