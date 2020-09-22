@@ -28,6 +28,12 @@
         </b-col>
       </b-row>
 
+      <b-row>
+        <b-col>
+          <p><b-button @click="writeDB">Test</b-button></p>
+        </b-col>
+      </b-row>
+
       <b-row v-if="debug">
         <b-col>
           <p v-for="participant in graphData">QuestionAt: {{ participant.x }}, score: {{ participant.y }}</p>
@@ -100,6 +106,14 @@
       reset(){
         this.questionAt = 1;
       },
+
+      async writeDB(content){
+        /*await this.$axios.post(this.$i18n.locale + '/api/write', {
+          content: '{ "participant1": { "questionAt": 3, "score": 7 }, "participant2": { "questionAt": 10, "score": -3 }, "participant3": { "questionAt": 13, "score": 0 } }'
+        });*/
+
+        await this.$axios.$get(this.$i18n.locale + '/api/write');
+      }
     },
   }
   

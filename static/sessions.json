@@ -1,14 +1,1 @@
-{
-  "participant1": {
-    "questionAt": 1,
-    "score": 7
-  },
-  "participant2": {
-    "questionAt": 10,
-    "score": -3
-  },
-  "participant3": {
-    "questionAt": 13,
-    "score": 0
-  }
-}
+{ "participant1": { "questionAt": 3, "score": 7 }, "participant2": { "questionAt": 10, "score": -3 }, "participant3": { "questionAt": 13, "score": 0 } }
