@@ -67,7 +67,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://localhost:3000', // Used as fallback if no runtime config is provided
+    baseURL: 'csps-privilege-walk.vercel.app', // Used as fallback if no runtime config is provided
   },
 
   publicRuntimeConfig: {
