@@ -8,6 +8,10 @@
             "src": "api/**/*.js",
             "use": "@vercel/node"
         },
+      {
+            "src": "en/api/**/*.js",
+            "use": "@vercel/node"
+        },
         {
             "src": "nuxt.config.js",
             "use": "@nuxtjs/now-builder"
