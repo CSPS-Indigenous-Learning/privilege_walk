@@ -17,6 +17,8 @@
         { "src": "/en/api/(.*)", "dest": "api/index.js" },
         { "src": "/en/api", "dest": "api/index.js" },
         { "src": "/en/api/write", "dest": "api/write.js" },
+        { "src": "/en/api/write/(.*)", "dest": "api/write.js" },
+        { "src": "/en/api/write(.*)", "dest": "api/write.js" },
         { "src": "/(.*)", "dest": "$1" }
     ]
 }
