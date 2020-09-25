@@ -8,21 +8,21 @@
       "src": "api/**/*.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": "/tmp/(.*)"
+        "includeFiles": ["/tmp/(.*)"]
       }
     },
     {
       "src": "en/api/**/*.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": "/tmp/(.*)"
+        "includeFiles": ["/tmp/(.*)"]
       }
     },
     {
       "src": "nuxt.config.js",
       "use": "@nuxtjs/now-builder",
       "config": {
-        "includeFiles": "/tmp/(.*)"
+        "includeFiles": ["/tmp/(.*)"]
     }
     },
   ],
