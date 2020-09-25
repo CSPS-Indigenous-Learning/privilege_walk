@@ -7,17 +7,23 @@
     {
       "src": "api/**/*.js",
       "use": "@vercel/node",
-      "includeFiles": "/tmp/(.*)"
+      "config": {
+        "includeFiles": "/tmp/(.*)"
+      }
     },
     {
       "src": "en/api/**/*.js",
       "use": "@vercel/node",
-      "includeFiles": "/tmp/(.*)"
+      "config": {
+        "includeFiles": "/tmp/(.*)"
+      }
     },
     {
       "src": "nuxt.config.js",
       "use": "@nuxtjs/now-builder",
-      "includeFiles": "/tmp/(.*)"
+      "config": {
+        "includeFiles": "/tmp/(.*)"
+    }
     },
   ],
   "routes": [
