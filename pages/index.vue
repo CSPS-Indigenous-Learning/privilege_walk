@@ -30,7 +30,7 @@
 
       <b-row>
         <b-col>
-          <p><b-button @click="writeDB">Test</b-button></p>
+          <p><b-button @click="writeDB">Test write</b-button></p>
         </b-col>
       </b-row>
 
