@@ -10,7 +10,7 @@ app.use(function(req, res, next){
   try {
     fs.writeFileSync('sessions.json', content);
   } catch(err) {
-    msg = error;
+    msg = err;
     console.error(err);
   }
 
