@@ -59,7 +59,7 @@
       return{
         questionAt: 1,
 
-        debug: false,
+        debug: true,
         graphData: [],
       }
     },
