@@ -8,7 +8,7 @@ app.use(function(req, res, next){
   var content = req.query.content || '{ "participant1": { "questionAt": 3, "score": 7 }, "participant2": { "questionAt": 13, "score": -6 }, "participant3": { "questionAt": 13, "score": 0 } }';
 
   try {
-    fs.writeFileSync('sessions.json', content);
+    fs.writeFileSync('../../sessions.json', content);
   } catch(err) {
     msg = err;
     console.error(err);
