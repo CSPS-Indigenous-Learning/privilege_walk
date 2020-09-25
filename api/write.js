@@ -10,15 +10,13 @@ app.use(function(req, res, next){
       return console.log(err);
     }
     else{
-      console.log(res.statusCode);
-
-      //res.status(200);
-      console.log(req.path)
       console.log('sessions.json updated');
     }
   });
-  res.send("sessions.json updated");
-  next();
+
+  res.send("Test");
+
+  //next();
 });
 
 module.exports = app
