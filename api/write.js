@@ -19,7 +19,7 @@ app.use(function(req, res, next){
   });*/
 
   try {
-    fs.writeFileSync('sessions.json', content);
+    fs.writeFileSync('../sessions.json', content);
   } catch(err) {
     msg = error;
     console.error(err);
