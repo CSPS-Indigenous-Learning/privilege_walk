@@ -20,7 +20,4 @@ app.get("/", function(req, res){
   res.send("sessions.json updated");
 });
 
-module.exports = {
-  path: "/en/api/write",
-  handler: app
-}
+module.exports = app
