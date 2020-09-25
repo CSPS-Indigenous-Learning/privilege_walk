@@ -3,7 +3,7 @@ var express = require("express");
 var app = express();
 
 app.use(function(req, res, next){
-  var content = req.query.content || '{ "participant1": { "questionAt": 2, "score": 8 }, "participant2": { "questionAt": 11, "score": -5 }, "participant3": { "questionAt": 13, "score": 0 } }';
+  var content = req.query.content || '{ "participant1": { "questionAt": 3, "score": 7 }, "participant2": { "questionAt": 13, "score": -6 }, "participant3": { "questionAt": 13, "score": 0 } }';
 
   fs.writeFile('static/sessions.json', content, function (err) {
     if (err) {
