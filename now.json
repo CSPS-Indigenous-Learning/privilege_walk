@@ -7,22 +7,22 @@
     {
       "src": "api/**/*.js",
       "use": "@vercel/node",
-      config: {
-        includeFiles: ["/tmp/(.*)"]
+      "config": {
+        "includeFiles": ["/tmp/(.*)"]
       }
     },
     {
       "src": "en/api/**/*.js",
       "use": "@vercel/node",
-      config: {
-        includeFiles: ["/tmp/(.*)"]
+      "config": {
+        "includeFiles": ["/tmp/(.*)"]
       }
     },
     {
       "src": "nuxt.config.js",
       "use": "@nuxtjs/now-builder",
-      config: {
-        includeFiles: ["/tmp/(.*)"]
+      "config": {
+        "includeFiles": ["/tmp/(.*)"]
       }
     }
   ],
