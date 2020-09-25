@@ -1,25 +1,30 @@
 {
-    "version": 2,
-    "env": {
-        "ON_VERCEL": "true"
+  "version": 2,
+  "env": {
+    "ON_VERCEL": "true"
+  },
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
     },
-    "builds": [
-        {
-            "src": "api/**/*.js",
-            "use": "@vercel/node"
-        },
-      {
-            "src": "en/api/**/*.js",
-            "use": "@vercel/node"
-        },
-        {
-            "src": "nuxt.config.js",
-            "use": "@nuxtjs/now-builder"
-        }
-    ],
-    "routes": [
-        { "src": "/en/api/write", "dest": "api/write.js" },
-        { "src": "/en/api/write/(.*)", "dest": "api/write.js" },
-        { "src": "/en/api/write(.*)", "dest": "api/write.js" }
-    ]
+    {
+      "src": "en/api/**/*.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "nuxt.config.js",
+      "use": "@nuxtjs/now-builder"
+    }
+  ],
+  "routes": [
+    { "src": "/en/api/write", "dest": "api/write.js" },
+    { "src": "/en/api/write/(.*)", "dest": "api/write.js" },
+    { "src": "/en/api/write(.*)", "dest": "api/write.js" }
+  ],
+  "functions": {
+    "api/write.js": {
+      "includeFiles": "/tmp/(.*)"
+    }
+  }
 }
