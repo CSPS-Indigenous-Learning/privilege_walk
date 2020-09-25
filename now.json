@@ -6,15 +6,24 @@
   "builds": [
     {
       "src": "api/**/*.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      config: {
+        includeFiles: ["/tmp/(.*)"]
+      }
     },
     {
       "src": "en/api/**/*.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      config: {
+        includeFiles: ["/tmp/(.*)"]
+      }
     },
     {
       "src": "nuxt.config.js",
-      "use": "@nuxtjs/now-builder"
+      "use": "@nuxtjs/now-builder",
+      config: {
+        includeFiles: ["/tmp/(.*)"]
+      }
     }
   ],
   "routes": [

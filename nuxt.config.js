@@ -67,7 +67,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: isServerlessEnvironment ? 'csps-privilege-walk.vercel.app' : '', // Used as fallback if no runtime config is provided
+    baseURL: isServerlessEnvironment ? 'privilege-walk-csps.vercel.app' : '', // Used as fallback if no runtime config is provided
   },
 
   publicRuntimeConfig: {
